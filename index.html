@@ -203,13 +203,29 @@ var map = L.map('map', {
                     };
                 } else if (feature.properties.importance == "2") {
                     return {
-                        color: "#fd8d3c"
+                        color: "#f03b20"
                     };
                 } else if (feature.properties.importance == "3") {
                     return {
-                        color: "#253494"
+                        color: "#fd8d3c"
                     };
                 }
+                else if (feature.properties.importance == "4") {
+                    return {
+                        color: "#feb24c"
+                    };
+                }
+                else if (feature.properties.importance == "5") {
+                    return {
+                        color: "#fed976"
+                    };
+                }
+                else if (feature.properties.importance == "6") {
+                    return {
+                        color: "#ffffb2"
+                    };
+                }
+                
             },
             onEachFeature: function (feature, layer) {
                 if (feature.properties.importance == "1") {
