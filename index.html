@@ -187,8 +187,7 @@
 
 var map = L.map('map', {
           zoom: 15,
-          center: [41.205,29.092],
-        
+          center: [41.205,29.092]
 
         });
 
@@ -252,10 +251,11 @@ var map = L.map('map', {
 
         //grouping base layers defined above and assigning them to a var
         var baseLayers = {
-            "Uydu": Esri_WorldImagery
+            "Fay Hatlari": fay
            };
         var tileLayers= {
-        	 "Fay Hatlari": fay
+        	 "Uydu": Esri_WorldImagery,
+             "Altlik Harita": grayscale
 
         }
 
