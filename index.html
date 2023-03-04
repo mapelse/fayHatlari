@@ -256,18 +256,18 @@ var map = L.map('map', {
                     //CONF - rank of reliability of arguments for activity of the structure.
                     layer.bindPopup("<b>Guvenilirlik: </b>"+feature.properties["CONF"]+"<br>"+"<b>Guncel Hareketlilik:</b>"+feature.properties["RATE"]+"<br>"); 
                 } else if (feature.properties.importance == "2") {
-                    layer.bindPopup("<b>Muhtemel Hasarlı Alan</b><br>");
+                    layer.bindPopup("<b>Guvenilirlik: </b>"+feature.properties["CONF"]+"<br>"+"<b>Guncel Hareketlilik:</b>"+feature.properties["RATE"]+"<br>"); 
                 } else if (feature.properties.importance == "3") {
-                    layer.bindPopup("<b>Hasarsız Gorunen Alan</b><br>");
+                    layer.bindPopup("<b>Guvenilirlik: </b>"+feature.properties["CONF"]+"<br>"+"<b>Guncel Hareketlilik:</b>"+feature.properties["RATE"]+"<br>"); 
                 }
                 else if (feature.properties.importance == "4") {
-                    layer.bindPopup("<b>Hasarsız Gorunen Alan</b><br>");
+                    layer.bindPopup("<b>Guvenilirlik: </b>"+feature.properties["CONF"]+"<br>"+"<b>Guncel Hareketlilik:</b>"+feature.properties["RATE"]+"<br>"); 
                 }
                 else if (feature.properties.importance == "5") {
-                    layer.bindPopup("<b>Hasarsız Gorunen Alan</b><br>");
+                    layer.bindPopup("<b>Guvenilirlik: </b>"+feature.properties["CONF"]+"<br>"+"<b>Guncel Hareketlilik:</b>"+feature.properties["RATE"]+"<br>"); 
                 }
                 else if (feature.properties.importance == "6") {
-                    layer.bindPopup("<b>Hasarsız Gorunen Alan</b><br>");
+                    layer.bindPopup("<b>Guvenilirlik: </b>"+feature.properties["CONF"]+"<br>"+"<b>Guncel Hareketlilik:</b>"+feature.properties["RATE"]+"<br>"); 
                 }
             }
         }).addTo(map);
