@@ -294,7 +294,18 @@ var map = L.map('map', {
       	position: "topleft"
       }).addTo(map);
 
-      L.control.polylineMeasure({position:'topleft', unit:'kilometres', clearMeasurementsOnStop: false, showClearControl: true, showUnitControl: false}).addTo(map);
+      L.control.polylineMeasure({
+        position:'topleft', 
+        unit:'kilometres', 
+        clearMeasurementsOnStop: true, 
+        showClearControl: true, 
+        showUnitControl: false,
+        tooltipTextFinish: 'Çizimi bitirmek için pembe noktaya tıklayın<br>',
+    tooltipTextDelete: 'Noktayı silmek için SHIFT tuşuna basarak tıklayın </b>',
+    tooltipTextMove: 'Noktayı hareket ettirmek için tıklayıp sürükleyin<br>',
+    tooltipTextResume: '<br>Ölçüme devam etmek için CTRL tuşuna basın</b>',
+    tooltipTextAdd: 'Nokta eklemek için CTRL\'ye basarak tıklayın</b>',
+    }).addTo(map);
 
        //Adding all layers and feautes to map
         L.control.layers(tileLayers,baseLayers,{
