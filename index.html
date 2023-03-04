@@ -137,9 +137,7 @@
     <div id="map"></div>
 
     <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
-<script>
-    var bbox = turf.bbox(features);
-</script>
+
 
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
     integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
@@ -204,7 +202,7 @@ var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all
 var map = L.map('map', {
           zoom: 7,
           center: [39.907,36.06],
-          layers: [CartoDB_DarkMatter]
+          layers: [esriImageryLabels]
 
         });
 
@@ -264,15 +262,12 @@ var map = L.map('map', {
         });
 
 
-
-        var buffered = turf.buffer(fay, 5, { units: 'kilometers' });
        
         
 
         //grouping base layers defined above and assigning them to a var
         var baseLayers = {
-            "Fay Hatlari": fay,
-            "5 km Tampon Alan": buffered
+            "Fay Hatlari": fay
            };
         var tileLayers= {
             "Altlik Harita": CartoDB_DarkMatter,
