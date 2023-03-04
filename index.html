@@ -253,14 +253,7 @@ var map = L.map('map', {
             onEachFeature: function (feature, layer) {
                 var popupContent = "<b>Guvenilirlik: </b>" + feature.properties["CONF"] + "<br>" + "<b>Guncel Hareketlilik:</b>" + feature.properties["RATE"] + "<br>";
     layer.bindPopup(popupContent);
-    layer.on({
-      mouseover: function (e) {
-        this.openPopup();
-      },
-      mouseout: function (e) {
-        this.closePopup();
-      }
-    });
+   
   }
         }).addTo(map);
        
