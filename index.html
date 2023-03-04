@@ -8,14 +8,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57534785-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-57534785-3');
-</script>
+
+
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
@@ -141,6 +136,10 @@
 
     <div id="map"></div>
 
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+<script>
+    var bbox = turf.bbox(features);
+</script>
 
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
     integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
@@ -258,20 +257,22 @@ var map = L.map('map', {
         }).addTo(map);
        
 
-        
+      
 
         $.getJSON("assets/js/tr_faults_imp.geojson", function (data) {
             fay.addData(data);
         });
 
 
-         //initiating the map variable
+
+        var buffered = turf.buffer(fay, 5, { units: 'kilometers' });
        
         
 
         //grouping base layers defined above and assigning them to a var
         var baseLayers = {
-            "Fay Hatlari": fay
+            "Fay Hatlari": fay,
+            "5 km Tampon Alan": buffered
            };
         var tileLayers= {
             "Altlik Harita": CartoDB_DarkMatter,
