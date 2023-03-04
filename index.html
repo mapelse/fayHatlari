@@ -252,7 +252,9 @@ var map = L.map('map', {
             },
             onEachFeature: function (feature, layer) {
                 if (feature.properties.importance == "1") {
-                    layer.bindPopup(feature.properties["CONF"]);
+                    //RATE - rank of rate of recent tectonic movements along the structure.
+                    //CONF - rank of reliability of arguments for activity of the structure.
+                    layer.bindPopup("<b>Guvenilirlik</b>"+feature.properties["CONF"]+"<br>"+"<b>Guncel Hareketlilik</b>"+feature.properties["RATE"]+"<br>"); 
                 } else if (feature.properties.importance == "2") {
                     layer.bindPopup("<b>Muhtemel Hasarlı Alan</b><br>");
                 } else if (feature.properties.importance == "3") {
