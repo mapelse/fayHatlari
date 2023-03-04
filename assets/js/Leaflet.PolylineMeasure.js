@@ -94,13 +94,13 @@
              * @type {String}
              * @default
              */
-            measureControlTitleOn: "Turn on PolylineMeasure",
+            measureControlTitleOn: "Ölçüme Başla",
             /**
              * Title for the control going to be switched off
              * @type {String}
              * @default
              */
-            measureControlTitleOff: "Turn off PolylineMeasure",
+            measureControlTitleOff: "Ölçümü Bitir",
             /**
              * Label of the Measure control (maybe a unicode symbol)
              * @type {String}
@@ -124,7 +124,7 @@
              * @type {String}
              * @default
              */
-            clearControlTitle: 'Clear Measurements',
+            clearControlTitle: 'Ölçümü Temizle',
             /**
              * Label of the Clear control (maybe a unicode symbol)
              * @type {String}
