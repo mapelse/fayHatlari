@@ -158,6 +158,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script src="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.js"></script>
+    <script src="https://cdn.jsdelivr.net/leaflet.esri/1.0.4/esri-leaflet.js"></script>
     <!--for reading geojson via ajax-->
     <script src="assets/js/leaflet-ajax.js"></script>
 
@@ -190,8 +191,9 @@ var Stamen_TerrainLabels = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.ne
 	maxZoom: 18,
 	ext: 'png'
 });
-
-var esriImageryLabels = L.featureGroup([Esri_WorldImagery, Stamen_TerrainLabels]);
+var esriImagery = L.esri.basemapLayer('Imagery');
+var esriLabels = L.esri.basemapLayer('ImageryLabels');
+var esriImageryLabels = L.featureGroup([esriImagery, esriLabels]);
 
 var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
