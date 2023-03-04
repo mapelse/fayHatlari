@@ -287,11 +287,14 @@ var map = L.map('map', {
       }).addTo(map);
 
 
+
       L.control.mousePosition().addTo(map);
       //add mouse position
       L.Control.geocoder({
       	position: "topleft"
       }).addTo(map);
+
+      L.control.polylineMeasure({position:'topleft', unit:'kilometres', clearMeasurementsOnStop: false, showClearControl: true, showUnitControl: true}).addTo(map);
 
        //Adding all layers and feautes to map
         L.control.layers(tileLayers,baseLayers,{
