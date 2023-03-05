@@ -313,6 +313,10 @@ var map = L.map('map', {
     }
       }).addTo(map);
 
+        //add mouse position
+        L.Control.geocoder({
+      	position: "topleft"
+      }).addTo(map);
 
 
     
