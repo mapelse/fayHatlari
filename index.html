@@ -49,6 +49,10 @@
             color: #AAA;
         }
 
+        .legend {
+            padding-bottom: 35px; 
+        }
+
 
 
 
@@ -104,7 +108,7 @@
                         "Güncel Hareketlilik" değerleridir.
     
                         En koyu kırmızı ve kalın çizgiler ile gösterilen fay hatları Güvenilirlik Derecesi A ve Güncel Hareketliliği 1 olan fay hatlarıdır.
-                        <b>Renk tonu açılıp çizgi kalınlığı azaldıkça fay hattının önem derecesi de düşüyor gibi düşünülebilir.</b>
+                        <b>Renk tonu açılıp çizgi kalınlığı azaldıkça fay hattının önem derecesi de düşüyor gibi düşünülebilir.</b> Sol alt köşede bulunan gösterimde yukarıdan aşağıya doğru öneme göre azalan şekilde nasıl derecelendirildiği gösterilmiştir.
                         Haritayı hazırlamaktaki temel amaç fay hatlarına olan mesafeler hakkında genel bir
                          fikir vermektir.</p>
 
@@ -327,11 +331,26 @@ var map = L.map('map', {
 
 
 
-       //Adding all layers and feautes to map
+       //Adding all layers and feauters to map
         L.control.layers(tileLayers,baseLayers,{
         	position:"topleft",
         	collapsed: true
         }).addTo(map);
+
+
+        /*Legend specific*/
+var legend = L.control({ position: "bottomleft" });
+
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create("div", "legend")
+  img= ["assets/js/images/lejant.jpg"];
+;
+  div.innerHTML += " <img src="+ img +" height='100px' width='50px'>" +'<br>';
+
+  return div;
+};
+
+legend.addTo(map);
     </script>
 </body>
 </html>
