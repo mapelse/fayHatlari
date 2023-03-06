@@ -56,7 +56,31 @@
         .legend {
             padding-bottom: 35px; 
         }
+        
 
+
+        .find-me-button {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.find-me-button:hover {
+  background-color: #f6f6f6;
+}
+
+.find-me-button:active {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
 
 
 
@@ -116,8 +140,9 @@
                         Haritayı hazırlamaktaki temel amaç fay hatlarına olan mesafeler hakkında genel bir
                          fikir vermektir.</p>
 
+
                 <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify >
-                 Harita kullanımı için, eğer mevcut bulunduğunuz konumun bir fay hattına olan mesafesini ölçmek isterseniz 
+                 Haritanin en hızlı kullanımı için, isterseniz 'En Yakın Fayı Bul' butonuna tiklayabilirsiniz. Eğer mevcut bulunduğunuz konumun bir fay hattına olan mesafesini ölçmek isterseniz 
                   sol üstte bulunan "Beni bul" <span class="fa fa-map-marker"></span> butonuna tıklayabilirsiniz. Sonrasında ölçüm aracını <span class="polyline-measure-unicode-icon" id="polyline-measure-control">↦</span> seçerek bulunduğunuz nokta ile fay hattı arasındaki yaklaşık mesafeyi ölçebilirsiniz.
                   Bilgisayar kullanıyorsanız çift tıklayarak ölçümü sonlandırabilirsiniz. Ölçümü temizlemek için <span class="polyline-measure-unicode-icon polyline-measure-clearControl">×</span> tuşuna basmanız yeterlidir.
                   Çizim modundan tamamen çıkmak için tekrar ölçüm aracına <span class="polyline-measure-unicode-icon" id="polyline-measure-control">↦</span>  tıklamanız gerekmektedir.
@@ -189,6 +214,8 @@
     <script src="https://cdn.jsdelivr.net/leaflet.esri/1.0.4/esri-leaflet.js"></script>
     <!--for reading geojson via ajax-->
     <script src="assets/js/leaflet-ajax.js"></script>
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+
 
     <script>
         //mapbox
@@ -359,6 +386,61 @@ legend.onAdd = function(map) {
 };
 
 legend.addTo(map);
+
+var findMeButton = L.control({position: 'topleft'});
+findMeButton.onAdd = function(map) {
+    var buttonDiv = L.DomUtil.create('div', 'find-me-button');
+    buttonDiv.innerHTML = 'En Yakın Fayı Bul';
+    L.DomEvent.addListener(buttonDiv, 'click', function() {
+        map.locate({setView: true, maxZoom: 16});
+    });
+    return buttonDiv;
+};
+findMeButton.addTo(map);
+
+// When the user's location is found, find the closest line
+map.on('locationfound', function(e) {
+    var userLocation = e.latlng;
+    var closestLine = null;
+    var shortestDistance = Infinity;
+
+    // Create a marker for the user's location
+    var userMarker = L.marker(userLocation).addTo(map);
+
+    // Iterate over each line in the GeoJSON layer
+    fay.eachLayer(function(layer) {
+        // Calculate the distance between the user's location and the line
+        var distance = turf.pointToLineDistance(
+            turf.point([userLocation.lng, userLocation.lat]),
+            layer.toGeoJSON()
+        );
+
+
+        // If this line is closer than the previous closest line, update the closest line
+        if (distance < shortestDistance) {
+            closestLine = layer;
+            shortestDistance = distance;
+        }
+    });
+
+
+
+    // Create a popup with information about the closest line
+    var popupContent = "<b>Guvenilirlik: </b>" + closestLine.feature.properties["CONF"] + "<br>" + "<b>Guncel Hareketlilik:</b>" + 
+    closestLine.feature.properties["RATE"] + "<br>" +
+                       'En yakin fay hattina mesafe: ' + '<b>'+(shortestDistance/1000).toFixed(2)  + '<b>'+ ' km<br>';
+
+    // Center the map on the closest line and add a popup to it
+    var closestLineLatLngs = closestLine.getLatLngs();
+    var closestLineCenter = L.latLngBounds(closestLineLatLngs).getCenter();
+    map.setView(closestLineCenter, 12);
+    closestLine.bindPopup(popupContent).openPopup();
+
+    map.on('locationerror', function(e) {
+    alert("We could not find your location.");
+});
+
+});
     </script>
 </body>
 </html>
