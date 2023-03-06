@@ -433,7 +433,7 @@ map.on('locationfound', function(e) {
     // Center the map on the closest line and add a popup to it
     var closestLineLatLngs = closestLine.getLatLngs();
     var closestLineCenter = L.latLngBounds(closestLineLatLngs).getCenter();
-    map.setView(closestLineCenter, 12);
+    map.setView(closestLineCenter, 10);
     closestLine.bindPopup(popupContent).openPopup();
 
     map.on('locationerror', function(e) {
