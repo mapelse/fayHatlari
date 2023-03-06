@@ -390,7 +390,7 @@ legend.addTo(map);
 var findMeButton = L.control({position: 'topleft'});
 findMeButton.onAdd = function(map) {
     var buttonDiv = L.DomUtil.create('div', 'find-me-button');
-    buttonDiv.innerHTML = 'Konumuma En Yakın Fayı Bul';
+    buttonDiv.innerHTML = 'Bana En Yakın Fay';
     L.DomEvent.addListener(buttonDiv, 'click', function() {
         map.locate({setView: true, maxZoom: 16});
     });
