@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-        <meta charset='utf-8' />
+    <meta charset='utf-8' />
     <title>Türkiye Önemli Fay Hatları Haritası</title>
-    <meta name="description" content="istanbul,deprem, fay, fay hattı, diri fay,
+    <meta name="description"
+        content="istanbul,deprem, fay, fay hattı, diri fay,
     istanbul deprem, kahramanmaraş, antakya,şanlıurfa, ankara, mersin, hatay, elbistan, malatya,
      diyarbakır,adıyaman,pazarcık,gaziantep,iskenderun, istanbul depremi, beklenen büyük istanbul depremi,
       earthquake ,geology, geology map, zemin, nereler, sağlam, sağlam zemin, geological map, ibb,
-       istanbul büyükşehir belediyesi,jeoloji, jeoloji haritasi, jeolojik harita, interaktif, ekşisözlük, twitter, facebook, tiktok"/>
+       istanbul büyükşehir belediyesi,jeoloji, jeoloji haritasi, jeolojik harita, interaktif, ekşisözlük, twitter, facebook, tiktok" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRMTRF89TM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRMTRF89TM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-CRMTRF89TM');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-CRMTRF89TM');
+    </script>
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-  crossorigin=""/>
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin="" />
 
     <link rel="stylesheet" href="assets/css/leaflet-sidebar.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.66.1/dist/L.Control.Locate.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.66.1/dist/L.Control.Locate.min.css" />
 
     <!-- bootstrap css-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <link rel="stylesheet" href="assets/css/Leaflet.PolylineMeasure.css" />
@@ -43,7 +50,9 @@
             margin: 0;
         }
 
-        html, body, #map {
+        html,
+        body,
+        #map {
             height: 100%;
             font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
         }
@@ -54,40 +63,38 @@
         }
 
         .legend {
-            padding-bottom: 35px; 
+            padding-bottom: 35px;
         }
-        
+
 
 
         .find-me-button {
-  background-color: #fff;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 6px 12px;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-}
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 6px 12px;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
 
-.find-me-button:hover {
-  background-color: #f6f6f6;
-}
+        .find-me-button:hover {
+            background-color: #f6f6f6;
+        }
 
-.find-me-button:active {
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-
-
+        .find-me-button:active {
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9427199806484048"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div id="sidebar" class="leaflet-sidebar collapsed">
         <!-- Nav tabs -->
@@ -97,7 +104,7 @@
 
                 <!-- <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li> -->
             </ul>
-             <ul role="tablist">
+            <ul role="tablist">
                 <!--<li><a href="#" role="tab" target="_blank"><i class="fa fa-twitter fa-lg"></i></a></li>-->
             </ul>
             <!--<ul role="tablist">
@@ -109,8 +116,8 @@
         <div class="leaflet-sidebar-content">
             <div class="leaflet-sidebar-pane" id="home">
                 <h1 class="leaflet-sidebar-header">
-                   <!-- in case of necessity write a title here such as "Minimize the bar" -->
-                   <p style="font-size: 15px">Paneli Küçült ve Haritayı Gör</p>
+                    <!-- in case of necessity write a title here such as "Minimize the bar" -->
+                    <p style="font-size: 15px">Paneli Küçült ve Haritayı Gör</p>
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
                 </h1>
 
@@ -120,46 +127,73 @@
 
                 <h4 style="margin-top:30px">Türkiye Önemli Fay Hatları Haritası</h4>
 
-                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify ></p><a href="https://mapelse.github.io/istanbulJeoloji/" target="_blank"><b>İstanbul Jeoloji Haritası için tıklayınız</b></a> </p>
+                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify></p><a
+                    href="https://mapelse.github.io/istanbulJeoloji/" target="_blank"><b>İstanbul Jeoloji Haritası için
+                        tıklayınız</b></a> </p>
 
 
-                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify >Büyük ekranlı cihazlar ile kullanım tavsiye edilir.</p>
+                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>Büyük
+                    ekranlı cihazlar ile kullanım tavsiye edilir.</p>
 
-                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify >Fay hatları verisi
-                     <a href="https://ui.adsabs.harvard.edu/abs/2022ESSD...14.4489Z/abstract" target="_blank"> bu akademik çalışma
-                        </a>'ya dayanmaktadır. Orijinal çalışmada daha çok sayıda fay hattı olduğundan yalnızca görece önemli olanlar
-                        filtrelenerek bu haritada gösterilmiştir. </p>
-                        
-                        <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify >
+                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>Fay
+                    hatları verisi
+                    <a href="https://ui.adsabs.harvard.edu/abs/2022ESSD...14.4489Z/abstract" target="_blank"> bu
+                        akademik çalışma
+                    </a>'ya dayanmaktadır. Orijinal çalışmada daha çok sayıda fay hattı olduğundan yalnızca görece
+                    önemli olanlar
+                    filtrelenerek bu haritada gösterilmiştir. </p>
 
-                        Fay hatlarına tıkladığınızda fay hatlarının derecelendirilmesinde kullanılan iki özellik gösterilecektir. Bunlar A,B,C harfleri ile gösterilen "Güvenilirlik Derecesi" ve 1,2,3 sayıları ile gösterilen
-                        "Güncel Hareketlilik" değerleridir.
-    
-                        En koyu kırmızı ve kalın çizgiler ile gösterilen fay hatları Güvenilirlik Derecesi A ve Güncel Hareketliliği 1 olan fay hatlarıdır.
-                        <b>Renk tonu açılıp çizgi kalınlığı azaldıkça fay hattının önem derecesi de düşüyor gibi düşünülebilir.</b> Sol alt köşede bulunan gösterimde yukarıdan aşağıya doğru öneme göre azalan şekilde nasıl derecelendirildiği gösterilmiştir.
-                        Haritayı hazırlamaktaki temel amaç fay hatlarına olan mesafeler hakkında genel bir
-                         fikir vermektir.</p>
+                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>
+
+                    Fay hatlarına tıkladığınızda fay hatlarının derecelendirilmesinde kullanılan iki özellik
+                    gösterilecektir. Bunlar A,B,C harfleri ile gösterilen "Güvenilirlik Derecesi" ve 1,2,3 sayıları ile
+                    gösterilen
+                    "Güncel Hareketlilik" değerleridir.
+
+                    En koyu kırmızı ve kalın çizgiler ile gösterilen fay hatları Güvenilirlik Derecesi A ve Güncel
+                    Hareketliliği 1 olan fay hatlarıdır.
+                    <b>Renk tonu açılıp çizgi kalınlığı azaldıkça fay hattının önem derecesi de düşüyor gibi
+                        düşünülebilir.</b> Sol alt köşede bulunan gösterimde yukarıdan aşağıya doğru öneme göre azalan
+                    şekilde nasıl derecelendirildiği gösterilmiştir.
+                    Haritayı hazırlamaktaki temel amaç fay hatlarına olan mesafeler hakkında genel bir
+                    fikir vermektir.</p>
 
 
-                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify >
-                 Haritanin en hızlı kullanımı için, isterseniz <b>'Bana En Yakın Fayı'</b> butonuna tiklayabilirsiniz. Eğer mevcut bulunduğunuz konumun bir fay hattına olan mesafesini ölçmek isterseniz 
-                  sol üstte bulunan "Beni bul" <span class="fa fa-map-marker"></span> butonuna tıklayabilirsiniz. Sonrasında ölçüm aracını <span class="polyline-measure-unicode-icon" id="polyline-measure-control">↦</span> seçerek bulunduğunuz nokta ile fay hattı arasındaki yaklaşık mesafeyi ölçebilirsiniz.
-                  Bilgisayar kullanıyorsanız çift tıklayarak ölçümü sonlandırabilirsiniz. Ölçümü temizlemek için <span class="polyline-measure-unicode-icon polyline-measure-clearControl">×</span> tuşuna basmanız yeterlidir.
-                  Çizim modundan tamamen çıkmak için tekrar ölçüm aracına <span class="polyline-measure-unicode-icon" id="polyline-measure-control">↦</span>  tıklamanız gerekmektedir.
+                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>
+                    Haritanin en hızlı kullanımı için, isterseniz <b>'Bana En Yakın Fay'</b> butonuna tiklayabilirsiniz.
+                    Eğer mevcut bulunduğunuz konumun bir fay hattına olan mesafesini ölçmek isterseniz
+                    sol üstte bulunan "Beni bul" <span class="fa fa-map-marker"></span> butonuna tıklayabilirsiniz.
+                    Sonrasında ölçüm aracını <span class="polyline-measure-unicode-icon"
+                        id="polyline-measure-control">↦</span> seçerek bulunduğunuz nokta ile fay hattı arasındaki
+                    yaklaşık mesafeyi ölçebilirsiniz.
+                    Bilgisayar kullanıyorsanız çift tıklayarak ölçümü sonlandırabilirsiniz. Ölçümü temizlemek için <span
+                        class="polyline-measure-unicode-icon polyline-measure-clearControl">×</span> tuşuna basmanız
+                    yeterlidir.
+                    Çizim modundan tamamen çıkmak için tekrar ölçüm aracına <span class="polyline-measure-unicode-icon"
+                        id="polyline-measure-control">↦</span> tıklamanız gerekmektedir.
                 </p>
-                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify >
-                  Eğer bulunduğunuz konum dışında bir konuma göz atmak istiyorsanız yine solda üstteki mercek sembolüne tıklayarak adres 
-                   yazabilirsiniz. (Örn:"Abide-i Hürriyet Cd. No:10" yazıp enter'a bastığınızda çıkan seçeneklerden seçim yapabilirsiniz) 
-        </p>
-        <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify > İsteğe bağlı olarak katmanlar sembolüne tıklayarak altlık haritayı değiştirebilirsiniz.</p> 
+                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>
+                    Eğer bulunduğunuz konum dışında bir konuma göz atmak istiyorsanız yine solda üstteki mercek
+                    sembolüne tıklayarak adres
+                    yazabilirsiniz. (Örn:"Abide-i Hürriyet Cd. No:10" yazıp enter'a bastığınızda çıkan seçeneklerden
+                    seçim yapabilirsiniz)
+                </p>
+                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify> İsteğe
+                    bağlı olarak katmanlar sembolüne tıklayarak altlık haritayı değiştirebilirsiniz.</p>
 
-                 <p style="margin-top:130px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify >İletişim: mapelse@outlook.com</p>
+                <p style="margin-top:130px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>İletişim:
+                    mapelse@outlook.com</p>
 
 
 
 
-                 <p style="margin-top:130px; font-family:'Ubuntu' ,sans-serif; font-size:10px; line-height: 10px" align=justify >
-                 tags: istanbul, fay, fay hattı, fault,diri fay, deprem, kahramanmaraş depremi, antakya, şanlıurfa, ankara, mersin, hatay, elbistan, malatya, diyarbakır,adıyaman,pazarcık,gaziantep,iskenderun,earthquake, geology, geology map,   jeoloji, jeoloji haritasi, zemin,  interaktif, konum, beklenen büyük istanbul depremi, türkiye, ekşisözlük, twitter, facebook </p>
+                <p style="margin-top:130px; font-family:'Ubuntu' ,sans-serif; font-size:10px; line-height: 10px"
+                    align=justify>
+                    tags: istanbul, fay, fay hattı, fault,diri fay, deprem, kahramanmaraş depremi, antakya, şanlıurfa,
+                    ankara, mersin, hatay, elbistan, malatya,
+                    diyarbakır,adıyaman,pazarcık,gaziantep,iskenderun,earthquake, geology, geology map, jeoloji, jeoloji
+                    haritasi, zemin, interaktif, konum, beklenen büyük istanbul depremi, türkiye, ekşisözlük, twitter,
+                    facebook </p>
 
 
                 <!--<p style="margin-top:120px;  font-family:'Ubuntu', sans-serif; line-height: 5px; font-size: 0.75em" align=justify ><i> References</i></p>
@@ -175,15 +209,18 @@
             </div>
 
             <div class="leaflet-sidebar-pane" id="profile">
-                <h1 class="leaflet-sidebar-header">Profile<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
+                <h1 class="leaflet-sidebar-header">Profile<span class="leaflet-sidebar-close"><i
+                            class="fa fa-caret-right"></i></span></h1>
             </div>
 
             <div class="leaflet-sidebar-pane" id="messages">
-                <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
+                <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i
+                            class="fa fa-caret-right"></i></span></h1>
             </div>
 
             <div class="leaflet-sidebar-pane" id="settings">
-                <h1 class="leaflet-sidebar-header">Settings<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
+                <h1 class="leaflet-sidebar-header">Settings<span class="leaflet-sidebar-close"><i
+                            class="fa fa-caret-right"></i></span></h1>
             </div>
         </div>
     </div>
@@ -192,23 +229,26 @@
 
     <div id="map"></div>
 
-  
+
 
 
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-    crossorigin=""></script>
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
     <script src="assets/js/leaflet-sidebar.js"></script>
     <script src="assets/js/L.Control.MousePosition.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.66.1/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.66.1/dist/L.Control.Locate.min.js"
+        charset="utf-8"></script>
     <!-- below is for bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script src="assets/js/Leaflet.PolylineMeasure.js"></script>
     <script src="https://cdn.jsdelivr.net/leaflet.esri/1.0.4/esri-leaflet.js"></script>
@@ -226,46 +266,48 @@
           attribution: 'Map data &copy; OpenStreetMap contributors'
         });*/
 
-        var osm=L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: 'Map data &copy; OpenStreetMap contributors'
+        var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; OpenStreetMap contributors'
         });
 
-        var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-});
+        var Esri_WorldImagery = L.tileLayer(
+            'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            });
         var grayscale = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  subdomains: 'abcd',
-  maxZoom: 19
-});
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        });
 
-var Stamen_TerrainLabels = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-labels/{z}/{x}/{y}{r}.{ext}', {
-	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	subdomains: 'abcd',
-	minZoom: 0,
-	maxZoom: 18,
-	ext: 'png'
-});
-var esriImagery = L.esri.basemapLayer('Imagery');
-var esriLabels = L.esri.basemapLayer('ImageryLabels');
-var esriImageryLabels = L.featureGroup([esriImagery, esriLabels]);
+        var Stamen_TerrainLabels = L.tileLayer(
+            'https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-labels/{z}/{x}/{y}{r}.{ext}', {
+                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                subdomains: 'abcd',
+                minZoom: 0,
+                maxZoom: 18,
+                ext: 'png'
+            });
+        var esriImagery = L.esri.basemapLayer('Imagery');
+        var esriLabels = L.esri.basemapLayer('ImageryLabels');
+        var esriImageryLabels = L.featureGroup([esriImagery, esriLabels]);
 
-var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-	subdomains: 'abcd',
-	maxZoom: 20
-});
+        var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        });
 
 
-var map = L.map('map', {
-          zoom: 6,
-          center: [39.907,36.06],
-          layers: [esriImageryLabels]
+        var map = L.map('map', {
+            zoom: 6,
+            center: [39.907, 36.06],
+            layers: [esriImageryLabels]
 
         });
 
 
-       
+
 
         let fay = new L.geoJson(null, {
             style: function (feature) {
@@ -284,163 +326,173 @@ var map = L.map('map', {
                         color: "#e31a1c",
                         weight: 6
                     };
-                }
-                else if (feature.properties.importance == "4") {
+                } else if (feature.properties.importance == "4") {
                     return {
                         color: "#fc4e2a",
                         weight: 5
                     };
-                }
-                else if (feature.properties.importance == "5") {
+                } else if (feature.properties.importance == "5") {
                     return {
                         color: "#fd8d3c",
                         weight: 4
                     };
-                }
-                else if (feature.properties.importance == "6") {
+                } else if (feature.properties.importance == "6") {
                     return {
                         color: "#feb24c",
-                        weight:3
+                        weight: 3
                     };
                 }
-                
+
             },
             onEachFeature: function (feature, layer) {
-                var popupContent = "<b>Guvenilirlik: </b>" + feature.properties["CONF"] + "<br>" + "<b>Guncel Hareketlilik:</b>" + feature.properties["RATE"] + "<br>";
-    layer.bindPopup(popupContent);
-   
-  }
-        }).addTo(map);
-       
+                var popupContent = "<b>Guvenilirlik: </b>" + feature.properties["CONF"] + "<br>" +
+                    "<b>Guncel Hareketlilik:</b>" + feature.properties["RATE"] + "<br>";
+                layer.bindPopup(popupContent);
 
-      
+            }
+        }).addTo(map);
+
+
+
 
         $.getJSON("assets/js/tr_faults_imp.geojson", function (data) {
             fay.addData(data);
         });
 
 
-       
-        
+
+
 
         //grouping base layers defined above and assigning them to a var
         var baseLayers = {
             "Fay Hatlari": fay
-           };
-        var tileLayers= {
+        };
+        var tileLayers = {
             "Altlik Harita": CartoDB_DarkMatter,
-        	 "Uydu": esriImageryLabels            
+            "Uydu": esriImageryLabels
 
         }
 
         //initiating the side bar
-        var sidebar = L.control.sidebar({ container: 'sidebar', position: 'right' })
+        var sidebar = L.control.sidebar({
+                container: 'sidebar',
+                position: 'right'
+            })
             .addTo(map)
             .open('home');
-      // add geolocator
-      L.control.locate({
-        strings: {
-        title: "Beni Bul"
-    }
-      }).addTo(map);
+        // add geolocator
+        L.control.locate({
+            strings: {
+                title: "Beni Bul"
+            }
+        }).addTo(map);
 
         //add mouse position
         L.Control.geocoder({
-      	position: "topleft"
-      }).addTo(map);
-
-
-    
-      L.control.polylineMeasure({
-        position:'topleft', 
-        unit:'kilometres', 
-        clearMeasurementsOnStop: true, 
-        showClearControl: true, 
-        showUnitControl: false,
-        tooltipTextFinish: 'Çizimi bitirmek için pembe noktaya tıklayın<br>',
-    tooltipTextDelete: 'Noktayı silmek için SHIFT tuşuna basarak tıklayın </b>',
-    tooltipTextMove: 'Noktayı hareket ettirmek için tıklayıp sürükleyin<br>',
-    tooltipTextResume: '<br>Ölçüme devam etmek için CTRL tuşuna basın</b>',
-    tooltipTextAdd: 'Nokta eklemek için CTRL\'ye basarak tıklayın</b>',
-    }).addTo(map);
+            position: "topleft"
+        }).addTo(map);
 
 
 
-       //Adding all layers and feauters to map
-        L.control.layers(tileLayers,baseLayers,{
-        	position:"topleft",
-        	collapsed: true
+        L.control.polylineMeasure({
+            position: 'topleft',
+            unit: 'kilometres',
+            clearMeasurementsOnStop: true,
+            showClearControl: true,
+            showUnitControl: false,
+            tooltipTextFinish: 'Çizimi bitirmek için pembe noktaya tıklayın<br>',
+            tooltipTextDelete: 'Noktayı silmek için SHIFT tuşuna basarak tıklayın </b>',
+            tooltipTextMove: 'Noktayı hareket ettirmek için tıklayıp sürükleyin<br>',
+            tooltipTextResume: '<br>Ölçüme devam etmek için CTRL tuşuna basın</b>',
+            tooltipTextAdd: 'Nokta eklemek için CTRL\'ye basarak tıklayın</b>',
+        }).addTo(map);
+
+
+
+        //Adding all layers and feauters to map
+        L.control.layers(tileLayers, baseLayers, {
+            position: "topleft",
+            collapsed: true
         }).addTo(map);
 
 
         /*Legend specific*/
-var legend = L.control({ position: "bottomleft" });
+        var legend = L.control({
+            position: "bottomleft"
+        });
 
-legend.onAdd = function(map) {
-  var div = L.DomUtil.create("div", "legend")
-  img= ["assets/js/images/lejant.jpg"];
-;
-  div.innerHTML += " <img src="+ img +" height='100px' width='50px'>" +'<br>';
+        legend.onAdd = function (map) {
+            var div = L.DomUtil.create("div", "legend")
+            img = ["assets/js/images/lejant.jpg"];;
+            div.innerHTML += " <img src=" + img + " height='100px' width='50px'>" + '<br>';
 
-  return div;
-};
+            return div;
+        };
 
-legend.addTo(map);
+        legend.addTo(map);
 
-var findMeButton = L.control({position: 'topleft'});
-findMeButton.onAdd = function(map) {
-    var buttonDiv = L.DomUtil.create('div', 'find-me-button');
-    buttonDiv.innerHTML = 'Bana En Yakın Fay';
-    L.DomEvent.addListener(buttonDiv, 'click', function() {
-        map.locate({setView: true, maxZoom: 16});
-    });
-    return buttonDiv;
-};
-findMeButton.addTo(map);
+        var findMeButton = L.control({
+            position: 'topleft'
+        });
+        findMeButton.onAdd = function (map) {
+            var buttonDiv = L.DomUtil.create('div', 'find-me-button');
+            buttonDiv.innerHTML = 'Bana En Yakın Fay';
+            L.DomEvent.addListener(buttonDiv, 'click', function () {
+                map.locate({
+                    setView: true,
+                    maxZoom: 16
+                });
+            });
+            return buttonDiv;
+        };
+        findMeButton.addTo(map);
 
-// When the user's location is found, find the closest line
-map.on('locationfound', function(e) {
-    var userLocation = e.latlng;
-    var closestLine = null;
-    var shortestDistance = Infinity;
+        // When the user's location is found, find the closest line
+        map.on('locationfound', function (e) {
+            var userLocation = e.latlng;
+            var closestLine = null;
+            var shortestDistance = Infinity;
 
-    // Create a marker for the user's location
-    var userMarker = L.marker(userLocation).addTo(map);
+            // Create a marker for the user's location
+            var userMarker = L.marker(userLocation).addTo(map);
 
-    // Iterate over each line in the GeoJSON layer
-    fay.eachLayer(function(layer) {
-        // Calculate the distance between the user's location and the line
-        var distance = turf.pointToLineDistance(
-            turf.point([userLocation.lng, userLocation.lat]),
-            layer.toGeoJSON()
-        );
-
-
-        // If this line is closer than the previous closest line, update the closest line
-        if (distance < shortestDistance) {
-            closestLine = layer;
-            shortestDistance = distance;
-        }
-    });
+            // Iterate over each line in the GeoJSON layer
+            fay.eachLayer(function (layer) {
+                // Calculate the distance between the user's location and the line
+                var distance = turf.pointToLineDistance(
+                    turf.point([userLocation.lng, userLocation.lat]),
+                    layer.toGeoJSON()
+                );
 
 
+                // If this line is closer than the previous closest line, update the closest line
+                if (distance < shortestDistance) {
+                    closestLine = layer;
+                    shortestDistance = distance;
+                }
+            });
 
-    // Create a popup with information about the closest line
-    var popupContent = "<b>Guvenilirlik: </b>" + closestLine.feature.properties["CONF"] + "<br>" + "<b>Guncel Hareketlilik:</b>" + 
-    closestLine.feature.properties["RATE"] + "<br>" +
-                       'En yakin fay hattina mesafeniz: ' + '<b>'+(shortestDistance/1000).toFixed(2)  + '<b>'+ ' km<br>';
 
-    // Center the map on the closest line and add a popup to it
-    var closestLineLatLngs = closestLine.getLatLngs();
-    var closestLineCenter = L.latLngBounds(closestLineLatLngs).getCenter();
-    map.setView(closestLineCenter, 10);
-    closestLine.bindPopup(popupContent).openPopup();
 
-    map.on('locationerror', function(e) {
-    alert("We could not find your location.");
-});
+            // Create a popup with information about the closest line
+            var popupContent = "<b>Guvenilirlik: </b>" + closestLine.feature.properties["CONF"] + "<br>" +
+                "<b>Guncel Hareketlilik:</b>" +
+                closestLine.feature.properties["RATE"] + "<br>" +
+                'En yakin fay hattina mesafeniz: ' + '<b>' + (shortestDistance / 1000).toFixed(2) + '<b>' +
+                ' km<br>';
 
-});
+            // Center the map on the closest line and add a popup to it
+            var closestLineLatLngs = closestLine.getLatLngs();
+            var closestLineCenter = L.latLngBounds(closestLineLatLngs).getCenter();
+            map.setView(closestLineCenter, 10);
+            closestLine.bindPopup(popupContent).openPopup();
+
+            map.on('locationerror', function (e) {
+                alert("We could not find your location.");
+            });
+
+        });
     </script>
 </body>
+
 </html>
