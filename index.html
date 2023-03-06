@@ -135,13 +135,26 @@
                 <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>Büyük
                     ekranlı cihazlar ile kullanım tavsiye edilir.</p>
 
-                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>Fay
-                    hatları verisi
-                    <a href="https://ui.adsabs.harvard.edu/abs/2022ESSD...14.4489Z/abstract" target="_blank"> bu
-                        akademik çalışma
-                    </a>'ya dayanmaktadır. Orijinal çalışmada daha çok sayıda fay hattı olduğundan yalnızca görece
-                    önemli olanlar
-                    filtrelenerek bu haritada gösterilmiştir. </p>
+                    <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>
+                        Haritanin en hızlı kullanımı için, isterseniz <b>'Bana En Yakın Fay'</b> butonuna tiklayabilirsiniz.
+                        Eğer mevcut bulunduğunuz konumun bir fay hattına olan mesafesini ölçmek isterseniz
+                        sol üstte bulunan "Beni bul" <span class="fa fa-map-marker"></span> butonuna tıklayabilirsiniz.
+                        Sonrasında ölçüm aracını <span class="polyline-measure-unicode-icon"
+                            id="polyline-measure-control">↦</span> seçerek bulunduğunuz nokta ile fay hattı arasındaki
+                        yaklaşık mesafeyi ölçebilirsiniz.
+                        Bilgisayar kullanıyorsanız çift tıklayarak ölçümü sonlandırabilirsiniz. Ölçümü temizlemek için <span
+                            class="polyline-measure-unicode-icon polyline-measure-clearControl">×</span> tuşuna basmanız
+                        yeterlidir.
+                        Çizim modundan tamamen çıkmak için tekrar ölçüm aracına <span class="polyline-measure-unicode-icon"
+                            id="polyline-measure-control">↦</span> tıklamanız gerekmektedir.
+                    </p>
+
+                    <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>
+                        Eğer bulunduğunuz konum dışında bir konuma göz atmak istiyorsanız yine solda üstteki mercek
+                        sembolüne tıklayarak adres
+                        yazabilirsiniz. (Örn:"Abide-i Hürriyet Cd. No:10" yazıp enter'a bastığınızda çıkan seçeneklerden
+                        seçim yapabilirsiniz)
+                    </p>
 
                 <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>
 
@@ -159,19 +172,7 @@
                     fikir vermektir.</p>
 
 
-                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>
-                    Haritanin en hızlı kullanımı için, isterseniz <b>'Bana En Yakın Fay'</b> butonuna tiklayabilirsiniz.
-                    Eğer mevcut bulunduğunuz konumun bir fay hattına olan mesafesini ölçmek isterseniz
-                    sol üstte bulunan "Beni bul" <span class="fa fa-map-marker"></span> butonuna tıklayabilirsiniz.
-                    Sonrasında ölçüm aracını <span class="polyline-measure-unicode-icon"
-                        id="polyline-measure-control">↦</span> seçerek bulunduğunuz nokta ile fay hattı arasındaki
-                    yaklaşık mesafeyi ölçebilirsiniz.
-                    Bilgisayar kullanıyorsanız çift tıklayarak ölçümü sonlandırabilirsiniz. Ölçümü temizlemek için <span
-                        class="polyline-measure-unicode-icon polyline-measure-clearControl">×</span> tuşuna basmanız
-                    yeterlidir.
-                    Çizim modundan tamamen çıkmak için tekrar ölçüm aracına <span class="polyline-measure-unicode-icon"
-                        id="polyline-measure-control">↦</span> tıklamanız gerekmektedir.
-                </p>
+                
                 <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>
                     Eğer bulunduğunuz konum dışında bir konuma göz atmak istiyorsanız yine solda üstteki mercek
                     sembolüne tıklayarak adres
@@ -180,6 +181,15 @@
                 </p>
                 <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify> İsteğe
                     bağlı olarak katmanlar sembolüne tıklayarak altlık haritayı değiştirebilirsiniz.</p>
+
+                    <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>Fay
+                        hatları verisi
+                        <a href="https://ui.adsabs.harvard.edu/abs/2022ESSD...14.4489Z/abstract" target="_blank"> bu
+                            akademik çalışma
+                        </a>'ya dayanmaktadır. Orijinal çalışmada daha çok sayıda fay hattı olduğundan yalnızca görece
+                        önemli olanlar
+                        filtrelenerek bu haritada gösterilmiştir. </p>
+    
 
                 <p style="margin-top:130px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>İletişim:
                     mapelse@outlook.com</p>
@@ -381,31 +391,18 @@
             .addTo(map)
             .open('home');
         // add geolocator
-        L.control.locate({
+        /* L.control.locate({
             strings: {
                 title: "Beni Bul"
             }
-        }).addTo(map);
+        }).addTo(map); */
 
-        //add mouse position
-        L.Control.geocoder({
-            position: "topleft"
-        }).addTo(map);
+       
+        
 
 
 
-        L.control.polylineMeasure({
-            position: 'topleft',
-            unit: 'kilometres',
-            clearMeasurementsOnStop: true,
-            showClearControl: true,
-            showUnitControl: false,
-            tooltipTextFinish: 'Çizimi bitirmek için pembe noktaya tıklayın<br>',
-            tooltipTextDelete: 'Noktayı silmek için SHIFT tuşuna basarak tıklayın </b>',
-            tooltipTextMove: 'Noktayı hareket ettirmek için tıklayıp sürükleyin<br>',
-            tooltipTextResume: '<br>Ölçüme devam etmek için CTRL tuşuna basın</b>',
-            tooltipTextAdd: 'Nokta eklemek için CTRL\'ye basarak tıklayın</b>',
-        }).addTo(map);
+       
 
 
 
@@ -434,9 +431,12 @@
         var findMeButton = L.control({
             position: 'topleft'
         });
+
+       
+
         findMeButton.onAdd = function (map) {
             var buttonDiv = L.DomUtil.create('div', 'find-me-button');
-            buttonDiv.innerHTML = 'Bana En Yakın Fay';
+            buttonDiv.innerHTML = 'Bana En Yakın Fay   <i class="fa fa-map-marker"></i>';
             L.DomEvent.addListener(buttonDiv, 'click', function () {
                 map.locate({
                     setView: true,
@@ -446,6 +446,23 @@
             return buttonDiv;
         };
         findMeButton.addTo(map);
+        
+        L.Control.geocoder({
+            position: "topleft"
+        }).addTo(map);
+
+        L.control.polylineMeasure({
+            position: 'topleft',
+            unit: 'kilometres',
+            clearMeasurementsOnStop: true,
+            showClearControl: true,
+            showUnitControl: false,
+            tooltipTextFinish: 'Çizimi bitirmek için pembe noktaya tıklayın<br>',
+            tooltipTextDelete: 'Noktayı silmek için SHIFT tuşuna basarak tıklayın </b>',
+            tooltipTextMove: 'Noktayı hareket ettirmek için tıklayıp sürükleyin<br>',
+            tooltipTextResume: '<br>Ölçüme devam etmek için CTRL tuşuna basın</b>',
+            tooltipTextAdd: 'Nokta eklemek için CTRL\'ye basarak tıklayın</b>',
+        }).addTo(map);
 
         // When the user's location is found, find the closest line
         map.on('locationfound', function (e) {
