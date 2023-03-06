@@ -428,7 +428,7 @@ map.on('locationfound', function(e) {
     // Create a popup with information about the closest line
     var popupContent = "<b>Guvenilirlik: </b>" + closestLine.feature.properties["CONF"] + "<br>" + "<b>Guncel Hareketlilik:</b>" + 
     closestLine.feature.properties["RATE"] + "<br>" +
-                       'En yakin fay hattina mesafe: ' + '<b>'+(shortestDistance/1000).toFixed(2)  + '<b>'+ ' km<br>';
+                       'En yakin fay hattina mesafeniz: ' + '<b>'+(shortestDistance/1000).toFixed(2)  + '<b>'+ ' km<br>';
 
     // Center the map on the closest line and add a popup to it
     var closestLineLatLngs = closestLine.getLatLngs();
