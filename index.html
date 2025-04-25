@@ -85,7 +85,24 @@
 
         .find-me-button:active {
             box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
+
+               /* clicks pass through       */
+}
+            /* ---- pulsing “radio-signal” dot ----------------------------------- */
+            .leaflet-marker-icon.pulse{
+  width: 24px; height: 24px;               /* visible size              */
+  margin-left:-12px; margin-top:-12px;     /* centre on lat-lng         */
+  border-radius:50%;
+  background: rgba(255,0,0,0.6);           /* red fill                  */
+  animation: pulse 2s ease-out infinite;
+  pointer-events:none;      }
+
+@keyframes pulse{
+  0%   { box-shadow: 0 0   0   0 rgba(255,0,0,0.6); }
+  70%  { box-shadow: 0 0   0 12px rgba(255,0,0,0); }
+  100% { box-shadow: 0 0   0   0 rgba(255,0,0,0); }
+}
+        
     </style>
    
 </head>
@@ -124,8 +141,13 @@
 
                 <h4 style="margin-top:30px">Türkiye Önemli Fay Hatları ve 6 Siddetinin Uzerinde Gerceklesen Depremler Haritası</h4>
 
+                <p style="margin-top:10px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify></p><b> Deprem veri akisi gunceldir. 
+                    Magnitud 6 uzeri depremler guncel olarak gosterilmektedir.
+                En son gerceklesen deprem, kirmizi renkte kalp atisi efekti ile gosterilmektedir.</b></p>
+
+
                 <p style="margin-top:10px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify></p><a
-                        href="https://mapelse.github.io/global_vs30/" ><b> YENI! Turkiye Vs30 Deprem Sarsinti Potansiyeli Haritasi icin     tıklayınız</b></a> </p>
+                        href="https://mapelse.github.io/global_vs30/" ><b> Turkiye Vs30 Deprem Sarsinti Potansiyeli Haritasi icin     tıklayınız</b></a> </p>
 
 
                 <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify></p><a
@@ -136,8 +158,7 @@
                         <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify> Not:Bu bilgiler genel bilgilendirme amaçlıdır ve profesyonel tavsiye olarak kabul edilmemelidir. 
                             Mevcut verilerin kullanışlı bir şekilde sunumundan ibarettir.
                             Herhangi bir karar vermeden önce uygun uzmanlardan tavsiye almanız önerilir. </p>
-                <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>Büyük
-                    ekranlı cihazlar ile kullanım tavsiye edilir.</p>
+               
 
                     <p style="margin-top:30px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify>
                         Cizgi halinde olan veriler fay hatlarini, dairesel veriler ise gecmisten gunumuze Magnitud 6 uzeri 
@@ -373,66 +394,52 @@
             fay.addData(data);
         });
 
+        const depremler = L.geoJson(null,{
+  style:f=>{
+    const m=f.properties.mag;
+    if(m>=7)      return {color:'#c7e9b4',weight:2,fillOpacity:.7};
+    else if(m>=6.5)return{color:'#41b6c4',weight:2,fillOpacity:.7};
+    else if(m>=5)  return{color:'#225ea8',weight:2,fillOpacity:.7};
+    else           return{color:'green',   weight:2,fillOpacity:.7};
+  },
+  pointToLayer:(f,latlng)=>L.circleMarker(latlng,{radius:Math.round(f.properties.mag)*1.3}),
+  onEachFeature:(f,l)=>{
+    const p=f.properties;
+    l.bindPopup(`<b>Magnitüd:</b> ${p.mag}<br><b>Yer:</b> ${p.place}<br><b>Zaman:</b> ${new Date(p.time).toLocaleString()}<br><a href="${p.url}" target="_blank">Daha fazla bilgi</a>`);
+  }
+}).addTo(map);
 
-        
-            depremler = L.geoJson(null, {
+/* ---------- USGS canlı veri + pulse ---------- */
+let pulseMarker=null;
 
+function loadQuakes(){
+  const nowISO=new Date().toISOString().replace(/\.\d{3}Z$/,'Z');
+  const url="https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson"+
+            "&starttime=1500-01-01T00:00:00Z"+
+            "&endtime="+encodeURIComponent(nowISO)+
+            "&minlatitude=35.546&maxlatitude=42.695"+
+            "&minlongitude=25.928&maxlongitude=45.791"+
+            "&minmagnitude=6&orderby=time";
 
-                style: function (feature) {
-                    var mag = feature.properties.mag;
-                    if (mag >= 7.0) {
-                        return {
-                            color: "#c7e9b4",
-                            fillOpacity : 0.7,
-                            weight: 2
-                        };
-                    } else if (mag >= 6.5) {
-                        return {
-                            color: "#41b6c4",
-                            fillOpacity : 0.7,
-                            weight: 2
-                        };
-                    } else if (mag >= 5.0) {
-                        return {
-                            color: "#225ea8",
-                            fillOpacity : 0.7,
-                            weight: 2
-                        };
-                    } else {
-                        return {
-                            color: "green"
-                        }
-                    }
-                },
+  fetch(url).then(r=>r.json()).then(gj=>{
+    depremler.clearLayers();
+    depremler.addData(gj);
 
-                onEachFeature: function (feature, layer) {
+    // en yeni deprem
+    const latest=gj.features.reduce((a,b)=>a.properties.time>b.properties.time?a:b);
+    const latLng=[latest.geometry.coordinates[1],latest.geometry.coordinates[0]];
 
-                    var popupText = "<b>Magnitud:</b> " + feature.properties.mag +
-                        "<br><b>Yer:</b> " + feature.properties.place +
-                        "<br><a href='" + feature.properties.url + "' target='_blank'>Daha fazla bilgi</a>";
+    if(pulseMarker) pulseMarker.remove();
+    pulseMarker=L.marker(latLng,{
+      icon:L.divIcon({className:'leaflet-marker-icon pulse',iconSize:[24,24]})
+    }).addTo(map);
+  });
+  
+}
 
-                    layer.bindPopup(popupText, {
-                        closeButton: true,
-                        offset: L.point(0, -10)
-                    });
-                    layer.on('click', function () {
-                        layer.openPopup();
-                    });
-                },
+loadQuakes();
 
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, {
-                        radius: Math.round(feature.properties.mag) * 1.3,
-                    });
-                },
-            }).addTo(map);
-
-            $.getJSON("assets/js/major_earthquakes.json", function (data) {
-                depremler.addData(data);
-             });
-
-
-
+setInterval(loadQuakes,10*60*1000); // 10 dakikada bir yenile
 
 
 
@@ -461,16 +468,6 @@
             }
         }).addTo(map); */
 
-
-
-
-
-
-
-
-
-
-      
 
 
         /*Legend specific*/
