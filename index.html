@@ -90,15 +90,18 @@
 }
             /* ---- pulsing “radio-signal” dot ----------------------------------- */
             .leaflet-marker-icon.pulse{
-  width: 24px; height: 24px;               /* visible size              */
+  width: 20x; height: 20px;               /* visible size              */
   margin-left:-12px; margin-top:-12px;     /* centre on lat-lng         */
   border-radius:50%;
-  background: rgba(255,0,0,0.6);           /* red fill                  */
+  background: rgb(255, 0, 0);
+  border: 2px solid rgb(255, 255, 255);           /* red fill                  */
+  opacity: 0.8;
   animation: pulse 2s ease-out infinite;
-  pointer-events:none;      }
+  pointer-events:none; 
+     }
 
 @keyframes pulse{
-  0%   { box-shadow: 0 0   0   0 rgba(255,0,0,0.6); }
+  0%   { box-shadow: 0 0   0   0 rgb(255, 255, 255); }
   70%  { box-shadow: 0 0   0 12px rgba(255,0,0,0); }
   100% { box-shadow: 0 0   0   0 rgba(255,0,0,0); }
 }
@@ -143,7 +146,7 @@
 
                 <p style="margin-top:10px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify></p><b> Deprem veri akisi gunceldir. 
                     Magnitud 6 uzeri depremler guncel olarak gosterilmektedir.
-                En son gerceklesen deprem, kirmizi renkte kalp atisi efekti ile gosterilmektedir.</b></p>
+                En son gerceklesen deprem, kirmizi renkte kalp atisi efekti ile gosterilmektedir. Daha fazla bilgi almak icin dairelere ve fay cizgilerine tiklayabilirsiniz.</b></p>
 
 
                 <p style="margin-top:10px; font-family:'Ubuntu', sans-serif; line-height: 20px" align=justify></p><a
